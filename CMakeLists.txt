@@ -14,15 +14,16 @@ PROJECT(MultipleSignalSlotsInjection)
 SET(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Core)
-QT_STANDARD_PROJECT_SETUP()
+FIND_PACKAGE(Qt6 REQUIRED COMPONENTS Core Widgets)
 
+QT_STANDARD_PROJECT_SETUP()
 QT_ADD_EXECUTABLE(
     MultipleSignalSlotsInjection
     source/main.cpp
 )
 
 TARGET_LINK_LIBRARIES(MultipleSignalSlotsInjection PRIVATE Qt6::Core)
+TARGET_LINK_LIBRARIES(MultipleSignalSlotsInjection PRIVATE Qt6::Widgets)
 
 IF(MSVC)
     SET_TARGET_PROPERTIES(MultipleSignalSlotsInjection PROPERTIES PDB_OUTPUT_DIRECTORY ${PROJECT_BIN_PATH})
@@ -32,5 +33,5 @@ ENDIF(MSVC)
 ADD_CUSTOM_COMMAND(
     TARGET MultipleSignalSlotsInjection
     POST_BUILD
-    COMMAND CD $<$<CONFIG:Debug>:${PROJECT_BIN_PATH}/Debug>$<$<CONFIG:Release>:${PROJECT_BIN_PATH}/Release> && ${WINDEPLOYQT_EXECUTABLE} $<$<CONFIG:Debug>:${PROJECT_BIN_PATH}/Debug>$<$<CONFIG:Release>:${PROJECT_BIN_PATH}/Release>/MultipleSignalSlotsInjection.exe --verbose 2 --dir . --plugindir plugins --force
+    COMMAND CD $<$<CONFIG:Debug>:${PROJECT_BIN_PATH}/Debug>$<$<CONFIG:Release>:${PROJECT_BIN_PATH}/Release> && ${WINDEPLOYQT_EXECUTABLE} MultipleSignalSlotsInjection.exe --verbose 1 --dir . --plugindir plugins --no-translations --compiler-runtime
     )
