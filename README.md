@@ -1,1 +1,1 @@
-"# MultipleSignalSlotsInjection" 
+SET Qt6_DIR
