@@ -10,6 +10,9 @@
 /x64/*
 /lib/*
 /bin/*
+/.qt
+/MultipleSignalSlotsInjection.dir
+/MultipleSignalSlotsInjection_autogen
 
 
 # User-specific files
@@ -54,5 +57,3 @@
 *.pidb
 *.svclog
 *.scc
-/NGridTests\[1\]_include.cmake
-/NGridTests\[1\]_tests.cmake
