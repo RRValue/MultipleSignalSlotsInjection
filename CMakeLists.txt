@@ -28,12 +28,18 @@ QT_ADD_LIBRARY(
     LibA SHARED
     source/LibA/Foo.h
     source/LibA/Foo.cpp
+    source/LibA/FooSignalInterface.h
+    source/LibA/FooSignalProxy.h
+    source/LibA/FooSignalProxy.cpp
 )
 
 QT_ADD_LIBRARY(
     LibB SHARED
     source/LibB/Bar.h
     source/LibB/Bar.cpp
+    source/LibB/BarSignalInterface.h
+    source/LibB/BarSignalProxy.h
+    source/LibB/BarSignalProxy.cpp
 )
 
 QT_ADD_EXECUTABLE(
@@ -47,9 +53,9 @@ TARGET_INCLUDE_DIRECTORIES(LibA     PUBLIC ${PROJECT_SRC_PATH})
 TARGET_INCLUDE_DIRECTORIES(LibB     PUBLIC ${PROJECT_SRC_PATH})
 TARGET_INCLUDE_DIRECTORIES(Programm PUBLIC ${PROJECT_SRC_PATH})
 
-TARGET_LINK_LIBRARIES(LibA     PRIVATE      Qt6::Core)
-TARGET_LINK_LIBRARIES(LibB     PRIVATE LibA Qt6::Core)
-TARGET_LINK_LIBRARIES(Programm PRIVATE LibB Qt6::Core)
+TARGET_LINK_LIBRARIES(LibA     PRIVATE           Qt6::Core)
+TARGET_LINK_LIBRARIES(LibB     PRIVATE LibA      Qt6::Core)
+TARGET_LINK_LIBRARIES(Programm PRIVATE LibA LibB Qt6::Core)
 
 IF(MSVC)
     SET_TARGET_PROPERTIES(LibA     PROPERTIES PDB_OUTPUT_DIRECTORY ${PROJECT_BIN_PATH})

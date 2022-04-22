@@ -1,10 +1,17 @@
 #include "LibA/Foo.h"
 
-Foo::Foo() noexcept
+#include <qdebug.h>
+
+Foo::Foo()
 {
 }
 
-Foo::~Foo() noexcept
+Foo::~Foo()
 {
+    
+}
 
+void Foo::doSomethingFoo()
+{
+    qDebug() << __FUNCTION__;
 }

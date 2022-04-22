@@ -2,9 +2,14 @@
 
 #include "Global/global.h"
 
-class EXPORT_API Foo
+#include "LibA/FooSignalInterface.h"
+
+class EXPORT_API Foo : public FooSignalInterface
 {
 public:
-    Foo() noexcept;
-    ~Foo() noexcept;
+    Foo();
+    virtual ~Foo();
+
+protected:
+    void doSomethingFoo() final override;
 };
