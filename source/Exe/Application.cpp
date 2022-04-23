@@ -15,8 +15,8 @@ void Application::onRun()
     connect(this, &Application::callFoo, &foo_proxy, &FooSignalProxy::doSomethingFoo);
     connect(this, &Application::callBar, &bar_proxy, &BarSignalProxy::doSomethingBar);
 
-    connect(&foo_proxy, SIGNAL(callFromFoo(QString)), this, SLOT(onLibCalls(QString)));
-    connect(&bar_proxy, SIGNAL(callFromBar(QString)), this, SLOT(onLibCalls(QString)));
+    connect(&foo_proxy, &FooSignalProxy::callFromFoo, this, &Application::onLibCalls);
+    connect(&bar_proxy, &BarSignalProxy::callFromBar, this, &Application::onLibCalls);
 
     emit callFoo();
     emit callBar();
