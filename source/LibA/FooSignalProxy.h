@@ -2,25 +2,16 @@
 
 #include "Global/global.h"
 
+#include "LibA/FooSignalInterface.h"
+
 #include <QtCore/QObject>
 
 #include <memory>
 
-class MocFooSignalProxy : public QObject
+class EXPORT_API FooSignalProxy : public QObject, public FooSignalInterface
 {
     Q_OBJECT
 
-signals:
-    void callFromFoo(QString who);
-
-public slots:
-    virtual void doSomethingFoo() = 0;
-};
-
-class FooSignalInterface;
-
-class EXPORT_API FooSignalProxy : public MocFooSignalProxy
-{
 private:
     using Interface = std::weak_ptr<FooSignalInterface>;
 
@@ -28,7 +19,10 @@ public:
     FooSignalProxy(const Interface& iface);
     virtual ~FooSignalProxy();
 
-public:
+signals:
+    void callFromFoo(QString who);
+
+public slots:
     virtual void doSomethingFoo() final override;
 
 private:

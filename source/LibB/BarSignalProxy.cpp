@@ -1,7 +1,5 @@
 #include "LibB/BarSignalProxy.h"
 
-#include "LibB/BarSignalInterface.h"
-
 BarSignalProxy::BarSignalProxy(const Interface& iface) : m_Interface{iface}
 {
 }

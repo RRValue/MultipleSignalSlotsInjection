@@ -6,7 +6,7 @@
 
 #include "LibB/BarSignalInterface.h"
 
-class EXPORT_API Bar : public Foo, public BarSignalInterface
+class EXPORT_API Bar : public BarSignalInterface, public Foo
 {
 public:
     Bar() noexcept;

@@ -1,7 +1,5 @@
 #include "LibA/FooSignalProxy.h"
 
-#include "LibA/FooSignalInterface.h"
-
 FooSignalProxy::FooSignalProxy(const Interface& iface) : m_Interface{iface}
 {
 }
